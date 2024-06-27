@@ -5,24 +5,21 @@ listButtons.forEach((listButton) => listButton.addEventListener('click', listAct
 dropdownLists.forEach((dropdownList) => dropdownList.addEventListener('click', listChanger));
 
 function listActivator() {
-    this.parentElement.querySelector('.dropdown__list').className = 'dropdown__list_active';
+    this.parentElement.querySelector('.dropdown__list').classList.add('dropdown__list_active');
 }
 
 function listChanger(event) {
     event.preventDefault();
 
     let listItem = event.target.closest('.dropdown__item');
-    let listButton = listItem.closest('.dropdown').querySelector('.dropdown__value');
-    let dropdownList = listItem.parentElement;
-    
+
     if (listItem === null) {
         return;
     }
 
-    if (!dropdownList.contains(listItem)) {
-        return;
-    }
+    let listButton = listItem.closest('.dropdown').querySelector('.dropdown__value');
+    let dropdownList = listItem.parentElement;
 
     listButton.textContent = listItem.textContent;
-    dropdownList.className = 'dropdown__list';
+    dropdownList.classList.remove('dropdown__list_active');
 }
